@@ -14,6 +14,7 @@ namespace WerewolfClient
     {
         private WerewolfController controller;
         private Form _mainForm;
+        public string server;
         public Login(Form MainForm)
         {
             InitializeComponent();
@@ -56,21 +57,35 @@ namespace WerewolfClient
         {
             controller = (WerewolfController)c;
         }
-
         private void BtnSignIn_Click(object sender, EventArgs e)
         {
             WerewolfCommand wcmd = new WerewolfCommand();
             wcmd.Action = WerewolfCommand.CommandEnum.SignIn;
-            wcmd.Payloads = new Dictionary<string, string>() { { "Login", TbLogin.Text }, { "Password", TbPassword.Text }, { "Server", TBServer.Text } };
+            setserver();
+            wcmd.Payloads = new Dictionary<string, string>() { { "Login", TbLogin.Text }, { "Password", TbPassword.Text }, { "Server", server } };
             controller.ActionPerformed(wcmd);
         }
 
         private void BtnSignUp_Click(object sender, EventArgs e)
         {
             WerewolfCommand wcmd = new WerewolfCommand();
-            wcmd.Action = WerewolfCommand.CommandEnum.SignUp;
-            wcmd.Payloads = new Dictionary<string, string>() { { "Login", TbLogin.Text}, { "Password",TbPassword.Text}, { "Server", TBServer.Text } };
+            setserver();
+            wcmd.Action = WerewolfCommand.CommandEnum.SignUp;//set
+            wcmd.Payloads = new Dictionary<string, string>() { { "Login", TbLogin.Text}, { "Password",TbPassword.Text}, { "Server", server } };
             controller.ActionPerformed(wcmd);
+        }
+
+        private void setserver()
+        {
+            switch (TBServer.Text)
+            {
+               case "2Players": server = "http://project-ile.net:2342/werewolf/";
+                    break;
+               case "4Players": server = "http://project-ile.net:2344/werewolf/";
+                    break;
+                case "16Players":server = "http://project-ile.net:23416/werewolf/";
+                    break;
+            }
         }
     }
 }

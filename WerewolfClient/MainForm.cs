@@ -26,6 +26,7 @@ namespace WerewolfClient
         private string _myRole;
         private bool _isDead;
         private List<Player> players = null;
+        private Form _loginForm;
         public MainForm()
         {
             InitializeComponent();
@@ -72,7 +73,7 @@ namespace WerewolfClient
                 if (player.Name == wm.Player.Name || player.Status != Player.StatusEnum.Alive)
                 {
                     // FIXME, need to optimize this
-                    Image img = Properties.Resources.Icon_villager;
+                    Image img = Properties.Resources.asp;
                     string role;
                     if (player.Name == wm.Player.Name)
                     {
@@ -89,7 +90,7 @@ namespace WerewolfClient
                     switch (role)
                     {
                         case WerewolfModel.ROLE_SEER:
-                            img = Properties.Resources.Icon_seer;
+                            img = Properties.Resources.Icon_seer; //file 'sname in resource
                             break;
                         case WerewolfModel.ROLE_AURA_SEER:
                             img = Properties.Resources.Icon_aura_seer;
@@ -167,10 +168,10 @@ namespace WerewolfClient
                     case EventEnum.GameStarted:
                         players = wm.Players;
                         _myRole = wm.EventPayloads["Player.Role.Name"];
-                        AddChatMessage( "Your role is " + _myRole + ".");
+                        AddChatMessage("Your role is " + _myRole + ".");
                         _currentPeriod = Game.PeriodEnum.Night;
                         EnableButton(BtnAction, true);
-                        switch(_myRole)
+                        switch (_myRole)
                         {
                             case WerewolfModel.ROLE_PRIEST:
                                 BtnAction.Text = WerewolfModel.ACTION_HOLYWATER;
@@ -212,12 +213,12 @@ namespace WerewolfClient
                         UpdateAvatar(wm);
                         break;
                     case EventEnum.SwitchToDayTime:
-                        AddChatMessage( "Switch to day time of day #" + wm.EventPayloads["Game.Current.Day"] + ".");
+                        AddChatMessage("Switch to day time of day #" + wm.EventPayloads["Game.Current.Day"] + ".");
                         _currentPeriod = Game.PeriodEnum.Day;
                         LBPeriod.Text = "Day time of";
                         break;
                     case EventEnum.SwitchToNightTime:
-                        AddChatMessage( "Switch to night time of day #" + wm.EventPayloads["Game.Current.Day"] + ".");
+                        AddChatMessage("Switch to night time of day #" + wm.EventPayloads["Game.Current.Day"] + ".");
                         _currentPeriod = Game.PeriodEnum.Night;
                         LBPeriod.Text = "Night time of";
                         break;
@@ -261,10 +262,43 @@ namespace WerewolfClient
                         AddChatMessage(wm.EventPayloads["Game.Target.Name"] + " was shot dead by gunner.");
                         break;
                     case EventEnum.Alive:
-                        if (_isDead)
+                        AddChatMessage(wm.EventPayloads["Game.Target.Name"] + " has been revived by medium.");
+                        if (wm.EventPayloads["Game.Target.Id"] == null)
                         {
-                            AddChatMessage("You've been revived by medium.");
                             _isDead = false;
+                        }
+                        break;
+                    case EventEnum.ChatMessage:
+                        if (wm.EventPayloads["Success"] == WerewolfModel.TRUE)
+                        {
+                            AddChatMessage(wm.EventPayloads["Game.Chatter"] + ":" + wm.EventPayloads["Game.ChatMessage"]);
+                        }
+                        break;
+                    case EventEnum.Chat:
+                        if (wm.EventPayloads["Success"] == WerewolfModel.FALSE)
+                        {
+                            switch (wm.EventPayloads["Error"])
+                            {
+                                case "403":
+                                    AddChatMessage("You're not alive, can't talk now.");
+                                    break;
+                                case "404":
+                                    AddChatMessage("You're not existed, can't talk now.");
+                                    break;
+                                case "405":
+                                    AddChatMessage("You're not in a game, can't talk now.");
+                                    break;
+                                case "406":
+                                    AddChatMessage("You're not allow to talk now, go to sleep.");
+                                    break;
+                            }
+                        }
+                        break;
+                    case EventEnum.SignOut:
+                        if (wm.EventPayloads["Success"] == WerewolfModel.TRUE)
+                        {
+                            this.Visible = false;
+                            _loginForm.Visible = true;
                         }
                         break;
                 }
@@ -360,6 +394,31 @@ namespace WerewolfClient
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Environment.Exit(0);
+        }
+
+        private void TbChatInput_Enter(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Return && TbChatInput.Text != "")
+            {
+                WerewolfCommand wcmd = new WerewolfCommand();
+                wcmd.Action = CommandEnum.Chat;
+                wcmd.Payloads = new Dictionary<string, string>() { { "Message", TbChatInput.Text } };
+                TbChatInput.Text = "";
+                controller.ActionPerformed(wcmd);
+            }
+        }
+         public void addform(Form login)
+        {
+            _loginForm = login;
+        }
+
+        private void signout_Click(object sender, EventArgs e)
+        {
+            Login login = (Login)_loginForm;
+            WerewolfCommand wcmd = new WerewolfCommand();
+            wcmd.Action = WerewolfCommand.CommandEnum.SignOut;
+            wcmd.Payloads = new Dictionary<string, string>() { { "Server", login.server } };
+            controller.ActionPerformed(wcmd);
         }
     }
 }

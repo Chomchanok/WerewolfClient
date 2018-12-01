@@ -9,7 +9,7 @@ namespace WerewolfClient
     public class WerewolfCommand : Command
     {
         public new enum CommandEnum
-        {
+        {//
             SignUp = 1,
             SignIn = 2,
             SignOut = 3,
@@ -18,6 +18,7 @@ namespace WerewolfClient
             LeaveGame = 6,
             Vote = 7,
             Action = 8,
+            Chat = 9,
         };
         public new CommandEnum Action { get; set; }
     }
@@ -55,7 +56,8 @@ namespace WerewolfClient
                             wm.SignIn(cmd.Payloads["Server"], cmd.Payloads["Login"], cmd.Payloads["Password"]);
                             break;
 
-                        case WerewolfCommand.CommandEnum.SignOut:
+                        case WerewolfCommand.CommandEnum.SignOut: // Sign Out
+                            wm.SignOut(cmd.Payloads["Server"]);
                             break;
 
                         case WerewolfCommand.CommandEnum.JoinGame:
@@ -70,6 +72,9 @@ namespace WerewolfClient
                             break;
                         case WerewolfCommand.CommandEnum.Action:
                             wm.Action(cmd.Payloads["Target"]);
+                            break;
+                        case WerewolfCommand.CommandEnum.Chat:
+                            wm.Chat(cmd.Payloads["Message"]);
                             break;
                     }
                 }

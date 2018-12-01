@@ -37,7 +37,7 @@
             this.BtnSignUp = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.TBServer = new System.Windows.Forms.TextBox();
+            this.TBServer = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -45,9 +45,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(69, 158);
+            this.label1.Location = new System.Drawing.Point(92, 194);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(57, 24);
+            this.label1.Size = new System.Drawing.Size(73, 29);
             this.label1.TabIndex = 0;
             this.label1.Text = "Login";
             // 
@@ -55,35 +56,39 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(34, 200);
+            this.label2.Location = new System.Drawing.Point(45, 246);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(92, 24);
+            this.label2.Size = new System.Drawing.Size(120, 29);
             this.label2.TabIndex = 1;
             this.label2.Text = "Password";
             // 
             // TbLogin
             // 
             this.TbLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TbLogin.Location = new System.Drawing.Point(132, 158);
+            this.TbLogin.Location = new System.Drawing.Point(176, 194);
+            this.TbLogin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TbLogin.Name = "TbLogin";
-            this.TbLogin.Size = new System.Drawing.Size(273, 29);
+            this.TbLogin.Size = new System.Drawing.Size(363, 34);
             this.TbLogin.TabIndex = 2;
             // 
             // TbPassword
             // 
             this.TbPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TbPassword.Location = new System.Drawing.Point(132, 200);
+            this.TbPassword.Location = new System.Drawing.Point(176, 246);
+            this.TbPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TbPassword.Name = "TbPassword";
             this.TbPassword.PasswordChar = '*';
-            this.TbPassword.Size = new System.Drawing.Size(273, 29);
+            this.TbPassword.Size = new System.Drawing.Size(363, 34);
             this.TbPassword.TabIndex = 3;
             // 
             // BtnSignIn
             // 
             this.BtnSignIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnSignIn.Location = new System.Drawing.Point(248, 246);
+            this.BtnSignIn.Location = new System.Drawing.Point(331, 303);
+            this.BtnSignIn.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BtnSignIn.Name = "BtnSignIn";
-            this.BtnSignIn.Size = new System.Drawing.Size(94, 45);
+            this.BtnSignIn.Size = new System.Drawing.Size(125, 55);
             this.BtnSignIn.TabIndex = 4;
             this.BtnSignIn.Text = "Sign In";
             this.BtnSignIn.UseVisualStyleBackColor = true;
@@ -92,9 +97,10 @@
             // BtnSignUp
             // 
             this.BtnSignUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnSignUp.Location = new System.Drawing.Point(132, 246);
+            this.BtnSignUp.Location = new System.Drawing.Point(176, 303);
+            this.BtnSignUp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BtnSignUp.Name = "BtnSignUp";
-            this.BtnSignUp.Size = new System.Drawing.Size(94, 45);
+            this.BtnSignUp.Size = new System.Drawing.Size(125, 55);
             this.BtnSignUp.TabIndex = 5;
             this.BtnSignUp.Text = "Sign Up";
             this.BtnSignUp.UseVisualStyleBackColor = true;
@@ -103,9 +109,10 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(174, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(232, 15);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(100, 93);
+            this.pictureBox1.Size = new System.Drawing.Size(133, 114);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
@@ -114,26 +121,30 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(2, 118);
+            this.label3.Location = new System.Drawing.Point(3, 145);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(114, 24);
+            this.label3.Size = new System.Drawing.Size(145, 29);
             this.label3.TabIndex = 7;
             this.label3.Text = "API Address";
             // 
             // TBServer
             // 
-            this.TBServer.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TBServer.Location = new System.Drawing.Point(132, 115);
+            this.TBServer.FormattingEnabled = true;
+            this.TBServer.Items.AddRange(new object[] {
+            "2Players",
+            "4Players",
+            "16Players"});
+            this.TBServer.Location = new System.Drawing.Point(176, 148);
             this.TBServer.Name = "TBServer";
-            this.TBServer.Size = new System.Drawing.Size(273, 29);
+            this.TBServer.Size = new System.Drawing.Size(151, 24);
             this.TBServer.TabIndex = 8;
-            this.TBServer.Text = "http://localhost:2343/werewolf/";
             // 
             // Login
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(422, 328);
+            this.ClientSize = new System.Drawing.Size(563, 404);
             this.Controls.Add(this.TBServer);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.pictureBox1);
@@ -143,6 +154,7 @@
             this.Controls.Add(this.TbLogin);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Login";
             this.Text = "Login";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -161,6 +173,6 @@
         private System.Windows.Forms.Button BtnSignUp;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox TBServer;
+        private System.Windows.Forms.ComboBox TBServer;
     }
 }
